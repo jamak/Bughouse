@@ -1,0 +1,6 @@
+*.swp
+*.swo
+*.ho
+*.hi
+Guardfile
+dist/*
