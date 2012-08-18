@@ -1,6 +1,7 @@
 module Chess where
 
 import Data.Char
+import Control.Monad
 import Test.HUnit
 type Board = [[Square]]
 
@@ -8,6 +9,13 @@ note :: a -> Maybe b -> Either a b
 note a m = case m of
     Nothing -> Left  a
     Just b  -> Right b
+
+
+-- | Suppress the 'Left' value of an 'Either'
+hush :: Either a b -> Maybe b
+hush e = case e of
+    Left  _ -> Nothing
+    Right b -> Just b
 
 initialBoardStr ::  String
 initialBoardStr = unlines ["rnbqkbnr"
@@ -75,3 +83,5 @@ readPiece c = fmap makePiece lookupType
   where color      = if isUpper c then White else Black
         lookupType = lookup (toLower c) typeList
         makePiece  = Piece color
+
+movePiece :: Piece -> Square -> Maybe Square
