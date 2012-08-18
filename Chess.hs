@@ -11,11 +11,6 @@ note a m = case m of
     Just b  -> Right b
 
 
--- | Suppress the 'Left' value of an 'Either'
-hush :: Either a b -> Maybe b
-hush e = case e of
-    Left  _ -> Nothing
-    Right b -> Just b
 
 initialBoardStr ::  String
 initialBoardStr = unlines ["rnbqkbnr"
